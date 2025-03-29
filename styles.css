@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #c8f7e0;
+    color: rgb(0, 0, 0);
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+#preco {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#variacao {
+    font-size: 18px;
+    color: #ffcc00;
+}
+
+canvas {
+    margin-top:20px;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+}
+
