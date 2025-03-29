@@ -1,4 +1,5 @@
 const apiUrl = "https://api.coincap.io/v2/assets/bitcoin";
+let ultimoPreco = null;
 
 async function obterDados() {
     try {
@@ -46,8 +47,14 @@ let grafico = new Chart(ctx, {
     options: {
         responsive: true,
         scales: {
-            x: { display: false },
-            y: { beginAtZero: false }
+            x: { display: false, 
+                grid: { drawBorder: false, display: false}
+            },
+            y: { beginAtZero: false,
+                display: false,
+                ticks: { display: false},
+                grid: { drawBorder: false, display: false}
+            }
         }
     }
 })
@@ -57,9 +64,17 @@ function atualizarGrafico(preco) {
         dadosGrafico.labels.shift();
         dadosGrafico.datasets[0].data.shift();
     }
+    
+    let corLinha = "#00ff00";
+    if (ultimoPreco !== null && preco < ultimoPreco){
+        corLinha = "#ff0000";
+    }
 
-    dadosGrafico.labels.push("");
+    dadosGrafico.datasets[0].borderColor = corLinha;
     dadosGrafico.datasets[0].data.push(preco);
+    dadosGrafico.labels.push("");
 
     grafico.update();
+
+    ultimoPreco = preco;
 }
