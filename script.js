@@ -11,7 +11,15 @@ async function obterDados() {
 
         document.getElementById("nomeMoeda").textContent = nomeMoeda;
         document.getElementById("preco").textContent = `Preço: $${preco}`;
-        document.getElementById("variacao").textContent = `Variação: ${variacao}%`;
+        const variacaoElemento = document.getElementById("variacao");
+
+        variacaoElemento.textContent = `Variação: ${variacao}%`;
+
+        if (variacao >= 0) {
+            variacaoElemento.style.color = 'green';
+        } else {
+            variacaoElemento.style.color = 'red';
+        }
 
         atualizarGrafico(preco);
     } catch (error) {
