@@ -46,6 +46,7 @@ let grafico = new Chart(ctx, {
     data: dadosGrafico,
     options: {
         responsive: true,
+        maintainAspectRadio: false,
         scales: {
             x: { display: false, 
                 grid: { drawBorder: false, display: false}
@@ -54,6 +55,16 @@ let grafico = new Chart(ctx, {
                 display: false,
                 ticks: { display: false},
                 grid: { drawBorder: false, display: false}
+            }
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
             }
         }
     }
