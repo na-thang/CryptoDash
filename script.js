@@ -9,17 +9,18 @@ async function obterDados() {
         const nomeMoeda = dados.data.name;
         const preco = parseFloat(dados.data.priceUsd).toFixed(2);
         const variacao = parseFloat(dados.data.changePercent24Hr).toFixed(2);
+        const precoFormato = formatarPreco(preco);
 
         document.getElementById("nomeMoeda").textContent = nomeMoeda;
-        document.getElementById("preco").textContent = `Preço: $${preco}`;
+        document.getElementById("preco").textContent = `Preço: USD ${precoFormato}`;
         const variacaoElemento = document.getElementById("variacao");
 
-        variacaoElemento.textContent = `Variação: ${variacao}%`;
+        variacaoElemento.textContent = `${variacao}%`;
 
         if (variacao >= 0) {
-            variacaoElemento.style.color = 'green';
+            variacaoElemento.style.color = '#2bac7b';
         } else {
-            variacaoElemento.style.color = 'red';
+            variacaoElemento.style.color = '#e84359';
         }
 
         atualizarGrafico(preco);
@@ -28,7 +29,13 @@ async function obterDados() {
     }
 }
 
-setInterval(obterDados, 5000);
+function formatarPreco(preco) {
+    return new Intl.NumberFormat('pt-BR', {
+        currency: 'USD',
+    }).format(preco);
+}
+
+setInterval(obterDados, 3000);
 obterDados();
 
 const ctx = document.getElementById("grafico").getContext("2d");
@@ -38,7 +45,8 @@ let dadosGrafico = {
         label: "Preço ($)",
         borderColor: "#00ff00",
         backgroundColor: "transparent",
-        data: []
+        data: [],
+        borderWidth: 2
     }]
 };
 let grafico = new Chart(ctx, {
@@ -70,15 +78,16 @@ let grafico = new Chart(ctx, {
     }
 })
 
+
 function atualizarGrafico(preco) {
     if (dadosGrafico.labels.length > 10){
         dadosGrafico.labels.shift();
         dadosGrafico.datasets[0].data.shift();
     }
     
-    let corLinha = "#00ff00";
+    let corLinha = "#2bac7b";
     if (ultimoPreco !== null && preco < ultimoPreco){
-        corLinha = "#ff0000";
+        corLinha = "#e84359";
     }
 
     dadosGrafico.datasets[0].borderColor = corLinha;

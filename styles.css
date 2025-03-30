@@ -1,8 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    background-color: #c8f7e0;
-    color: rgb(0, 0, 0);
+    background-color: #121212;
+    color: rgb(196, 194, 194);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,9 +13,10 @@ body {
 .container {
     text-align: center;
     padding: 20px;
-    background: white;
+    background: #303039 ;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    box-shadow: 10px 10px 20px #0c0c0c;
 }
 
 h1 {
@@ -27,11 +28,11 @@ h1 {
     font-weight: bold;
 }
 
-/*#variacao {
+#variacao {
     font-size: 18px;
     color: #ffcc00;
 }
-*/
+
 canvas {
     margin-top:20px;
     width: 100%;
